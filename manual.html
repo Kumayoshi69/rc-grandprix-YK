@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>RC グランプリ 説明書</title>
+<meta name="description" content="RC グランプリの遊び方・操作方法・テクニック・コース紹介">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,500;0,700;1,700&family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap">
+<style>
+/* Same palette and type as the game, so the manual reads as part of it */
+:root{
+  --ink:#0C0F14;
+  --panel:#12161C;
+  --panel2:#161B22;
+  --line:#29303A;
+  --text:#ECEFF3;
+  --muted:#98A2AF;
+  --volt:#FFC400;
+  --volt-ink:#1B1500;
+  --hot:#FF5A3C;
+  --blue:#5AB0FF;
+  --orange:#FF9A2E;
+  --f-display:'Chakra Petch','Arial Narrow',system-ui,sans-serif;
+  --f-body:'Zen Kaku Gothic New','Hiragino Sans','Yu Gothic','Meiryo',system-ui,sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--ink);color:var(--text);font-family:var(--f-body);font-size:15px;line-height:1.8;-webkit-text-size-adjust:100%}
+a{color:var(--volt)}
+a:focus-visible{outline:2px solid var(--volt);outline-offset:2px}
+.wrap{max-width:860px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+/* header */
+.top{border-bottom:1px solid var(--line);background:linear-gradient(180deg,#151A21,var(--ink))}
+.top .wrap{padding-top:36px;padding-bottom:28px}
+.eyebrow{font-family:var(--f-display);font-weight:500;font-size:12px;letter-spacing:.16em;color:var(--muted);margin:0}
+h1{font-family:var(--f-display);font-style:italic;font-weight:700;font-size:clamp(38px,8vw,60px);line-height:.95;margin:8px 0 0;letter-spacing:-.01em}
+h1 span{color:var(--volt)}
+.sub{margin:10px 0 0;font-weight:700;color:var(--muted);letter-spacing:.2em;font-size:14px}
+.lead{margin:18px 0 0;max-width:40em}
+.play{display:inline-flex;align-items:center;gap:10px;margin-top:20px;background:var(--volt);color:var(--volt-ink);text-decoration:none;border-radius:4px;padding:12px 18px;font-family:var(--f-display);font-weight:700;font-style:italic;font-size:18px;letter-spacing:.04em}
+.play:hover{filter:brightness(1.08)}
+
+/* table of contents */
+.toc{position:sticky;top:0;z-index:5;background:rgba(12,15,20,.94);border-bottom:1px solid var(--line);backdrop-filter:blur(6px)}
+.toc .wrap{display:flex;gap:6px;overflow-x:auto;padding-top:10px;padding-bottom:10px;scrollbar-width:none}
+.toc .wrap::-webkit-scrollbar{display:none}
+.toc a{flex:none;color:var(--muted);text-decoration:none;font-size:13px;font-weight:700;border:1px solid var(--line);border-radius:999px;padding:4px 12px;white-space:nowrap}
+.toc a:hover{color:var(--text);border-color:var(--muted)}
+
+/* sections */
+main .wrap{padding-top:8px;padding-bottom:56px}
+section{padding-top:36px}
+h2{font-family:var(--f-body);font-weight:900;font-size:22px;margin:0 0 14px;display:flex;align-items:baseline;gap:12px;line-height:1.3}
+h2 .no{font-family:var(--f-display);font-style:italic;font-weight:700;font-size:15px;color:var(--volt);letter-spacing:.06em}
+h3{font-size:16px;font-weight:900;margin:22px 0 8px}
+p{margin:0 0 12px}
+ul,ol{margin:0 0 12px;padding-left:1.4em}
+li{margin:2px 0}
+.muted{color:var(--muted)}
+b.v{color:var(--volt)}
+kbd{font-family:var(--f-display);font-weight:700;font-size:12px;line-height:1;display:inline-block;border:1px solid #3A4250;border-bottom-width:2px;border-radius:4px;padding:3px 6px;background:var(--panel2);color:var(--text);white-space:nowrap;vertical-align:1px}
+
+/* cards */
+.card{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:16px 18px;margin:0 0 12px}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));margin-bottom:12px}
+.grid .card{margin:0}
+.card h3{margin-top:0}
+.tag{display:inline-block;font-size:11px;font-weight:900;border-radius:3px;padding:0 6px;margin-left:6px;vertical-align:2px;letter-spacing:.04em}
+.lv1{background:#2E6A2B;color:#DFF5DB}.lv2{background:#2B4C7A;color:#DCE8FA}.lv3{background:#7A4F22;color:#FBE8D2}
+
+/* flow */
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 14px;padding:0;list-style:none}
+.flow li{margin:0;background:var(--panel2);border:1px solid var(--line);border-radius:4px;padding:6px 12px;font-weight:700;font-size:14px}
+.flow li.arrow{background:none;border:0;padding:0 2px;color:var(--muted)}
+
+/* tables */
+.tbl{overflow-x:auto;margin:0 0 12px;border:1px solid var(--line);border-radius:6px}
+table{width:100%;border-collapse:collapse;font-size:14px;line-height:1.6}
+.tbl.wide table{min-width:600px} /* controls table scrolls sideways on phones instead of squeezing */
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+thead th{font-size:12px;letter-spacing:.08em;color:var(--muted);background:var(--panel);font-weight:700;white-space:nowrap}
+tbody th{font-weight:700;white-space:nowrap}
+td.c{white-space:nowrap}
+
+/* swatches */
+.sw{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:8px;vertical-align:-1px;border:1px solid rgba(255,255,255,.25)}
+.dot{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:8px;vertical-align:-1px}
+
+/* turbo meter illustration */
+.meter{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:10px 0 14px}
+.meter div{border-radius:4px;padding:10px 12px;background:var(--panel2);border:1px solid var(--line);font-size:13px;line-height:1.5}
+.meter b{display:block;font-family:var(--f-display);font-size:15px}
+.meter .m0 b{color:var(--muted)}.meter .m1 b{color:var(--blue)}.meter .m2 b{color:var(--orange)}
+.bar{display:block;height:6px;border-radius:3px;background:rgba(255,255,255,.12);margin-top:8px;overflow:hidden}
+.bar i{display:block;height:100%}
+.m0 .bar i{width:30%;background:var(--muted)}.m1 .bar i{width:60%;background:var(--blue)}.m2 .bar i{width:100%;background:var(--orange)}
+
+/* HUD diagram */
+.hud{position:relative;aspect-ratio:16/9;max-width:620px;border:1px solid var(--line);border-radius:6px;background:
+  radial-gradient(ellipse at 50% 60%,rgba(255,255,255,.04),transparent 60%),
+  repeating-linear-gradient(135deg,#2A4E29 0 22px,#2E5530 22px 44px);overflow:hidden;margin:0 0 12px;font-size:12px;line-height:1.4}
+.hud .road{position:absolute;left:-10%;right:-10%;top:42%;height:30%;background:#4B5058;border-top:5px solid #E9E9E4;border-bottom:5px solid #D63A2F;transform:rotate(-6deg)}
+.hud .b{position:absolute;background:rgba(10,12,16,.78);border:1px solid rgba(255,255,255,.12);border-radius:4px;padding:6px 8px;max-width:44%}
+.hud .b strong{display:block;font-family:var(--f-display);color:var(--volt);font-size:13px}
+.hud .tl{left:3%;top:5%}.hud .tr{right:3%;top:5%;text-align:right}.hud .bl{left:3%;bottom:6%}.hud .br{right:3%;bottom:6%;text-align:right}
+.hud .ct{left:50%;top:22%;transform:translateX(-50%);text-align:center;max-width:none;white-space:nowrap}
+@media (max-width:520px){.hud{aspect-ratio:auto;height:300px}.hud .b{font-size:11px}.meter{grid-template-columns:1fr}}
+
+.note{border-left:3px solid var(--volt);background:rgba(255,196,0,.06);padding:10px 14px;border-radius:0 4px 4px 0;margin:0 0 12px;font-size:14px}
+details{border:1px solid var(--line);border-radius:6px;background:var(--panel);margin:0 0 8px}
+summary{cursor:pointer;padding:12px 16px;font-weight:700;list-style-position:inside}
+summary:focus-visible{outline:2px solid var(--volt);outline-offset:2px;border-radius:6px}
+details > div{padding:0 16px 12px}
+footer{border-top:1px solid var(--line);color:var(--muted);font-size:13px}
+footer .wrap{padding-top:20px;padding-bottom:max(28px,env(safe-area-inset-bottom,0px));display:flex;gap:12px;justify-content:space-between;flex-wrap:wrap;align-items:center}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <p class="eyebrow">INSTRUCTION MANUAL · 1/10 SCALE BUGGY</p>
+    <h1>RC GRAND <span>PRIX</span></h1>
+    <p class="sub">ラジコン・グランプリ　説明書</p>
+    <p class="lead">真上から見たコースで、あなたのラジコンバギーと3台のライバルが3周レースで競います。軽い車体、爆発的な加速、よく滑る足まわり、壁に当たれば「ポン」と弾む ── ラジコンらしい走りを楽しんでください。インストール不要、ブラウザですぐに遊べます。</p>
+    <a class="play" href="index.html">ゲームをはじめる ▶</a>
+  </div>
+</header>
+
+<nav class="toc" aria-label="目次">
+  <div class="wrap">
+    <a href="#flow">遊び方</a><a href="#controls">操作方法</a><a href="#tech">テクニック</a><a href="#rules">ルール</a><a href="#courses">コース</a><a href="#rivals">ライバル</a><a href="#hud">画面の見かた</a><a href="#settings">設定と記録</a><a href="#faq">困ったとき</a>
+  </div>
+</nav>
+
+<main>
+<div class="wrap">
+
+<section id="flow" aria-labelledby="h-flow">
+  <h2 id="h-flow"><span class="no">01</span>遊び方</h2>
+  <ol class="flow" aria-label="ゲームの流れ">
+    <li>タイトル</li><li class="arrow" aria-hidden="true">→</li>
+    <li>カウントダウン</li><li class="arrow" aria-hidden="true">→</li>
+    <li>レース</li><li class="arrow" aria-hidden="true">→</li>
+    <li>リザルト</li>
+  </ol>
+  <ol>
+    <li><b>タイトル画面</b>でコース・マシンの色・難易度・周回数を選び、<b>スタート</b>（<kbd>Enter</kbd>）を押します。</li>
+    <li>「3・2・1・GO!」のカウントダウン。<b>GO! までアクセルは効きません</b>（フライングなし）。</li>
+    <li>4台でレース。あなたは<b>最後尾（4番グリッド）</b>からのスタートです。決められた周回を走りきるとゴール。</li>
+    <li><b>リザルト画面</b>で順位とタイムを確認。「もう一度」ですぐに再挑戦できます。</li>
+  </ol>
+</section>
+
+<section id="controls" aria-labelledby="h-controls">
+  <h2 id="h-controls"><span class="no">02</span>操作方法</h2>
+  <p>キーボード・ゲームパッド・スマホのタッチ操作に対応しています。ハンドルは<b>車から見た向き</b>で曲がります（画面の上下ではありません）。本物のラジコンと同じ感覚です。</p>
+  <div class="tbl wide">
+    <table>
+      <thead><tr><th scope="col">操作</th><th scope="col">キーボード</th><th scope="col">ゲームパッド</th><th scope="col">スマホ</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">アクセル</th><td class="c"><kbd>↑</kbd> / <kbd>W</kbd></td><td><kbd>R2</kbd> / <kbd>A</kbd></td><td>右下の <b>GAS</b></td></tr>
+        <tr><th scope="row">ブレーキ・後退</th><td class="c"><kbd>↓</kbd> / <kbd>S</kbd></td><td><kbd>L2</kbd> / <kbd>B</kbd></td><td><b>BRAKE</b></td></tr>
+        <tr><th scope="row">ハンドル</th><td class="c"><kbd>←</kbd><kbd>→</kbd> / <kbd>A</kbd><kbd>D</kbd></td><td>左スティック</td><td>左下のスティックを左右に</td></tr>
+        <tr><th scope="row">ドリフト</th><td class="c"><kbd>Space</kbd></td><td><kbd>R1</kbd></td><td><b>DRIFT</b></td></tr>
+        <tr><th scope="row">ポーズ</th><td class="c"><kbd>Esc</kbd> / <kbd>P</kbd></td><td><kbd>Start</kbd></td><td>右上の <b>II</b></td></tr>
+        <tr><th scope="row">リスタート</th><td class="c">ポーズ中に <kbd>R</kbd></td><td>ポーズ中に <kbd>Select</kbd></td><td>ポーズメニュー</td></tr>
+        <tr><th scope="row">スタート／もう一度</th><td class="c"><kbd>Enter</kbd></td><td><kbd>A</kbd></td><td>画面のボタン</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <ul>
+    <li><b>後退</b>：止まったあともブレーキを押し続けるとバックします。バック中はハンドルの向きが逆になります。</li>
+    <li><b>キーボード</b>：ハンドルキーは押し続けると約0.15秒で最大まで切れます。軽く「トン」と押せば小さく曲がれます。</li>
+    <li><b>スマホのスティック</b>：画面の左下あたりならどこに触れても、その場所にスティックが出ます。倒した量に応じてハンドルが切れ、指を離すとまっすぐに戻ります。GAS を押しながら別の指で操作できます。</li>
+    <li><b>ゲームパッド</b>：つないだあと、どれかボタンを押すと認識されます。</li>
+  </ul>
+</section>
+
+<section id="tech" aria-labelledby="h-tech">
+  <h2 id="h-tech"><span class="no">03</span>テクニック</h2>
+
+  <h3>ロケットスタート</h3>
+  <p>「GO!」が出た瞬間（<b>0.3秒以内</b>）にアクセルを押すと、「ROCKET START!」で一気に加速します。カウントダウン中から押しっぱなしにしていると発動しません。GO! に合わせて押すのがコツです。</p>
+
+  <h3>ドリフトとミニターボ</h3>
+  <p>ある程度スピードが出た状態（目安：<b>約30km/h以上</b>）で、<b>ハンドルを切りながらドリフトボタン</b>を押すとドリフト開始。タイヤ痕を残しながら鋭く曲がれます。ドリフトを長く続けるほどミニターボがたまり、<b>ボタンを離した瞬間</b>に加速します。</p>
+  <div class="meter" role="list" aria-label="ミニターボの段階">
+    <div class="m0" role="listitem"><b>〜1秒</b>チャージ中。離しても加速なし<span class="bar"><i></i></span></div>
+    <div class="m1" role="listitem"><b>1秒〜　青</b>後輪に青い火花。離すと0.8秒加速<span class="bar"><i></i></span></div>
+    <div class="m2" role="listitem"><b>2秒〜　橙</b>火花がオレンジに。離すと1.2秒加速<span class="bar"><i></i></span></div>
+  </div>
+  <p>ブースト中は最高速度が<b>25%アップ</b>し、加速も鋭くなります。チャージ量は画面右下のメーターで確認できます。スピードが落ちすぎる（約17km/h未満）とドリフトは途切れます。</p>
+
+  <h3>ダッシュ板</h3>
+  <p>黄色い矢印が光る板の上を通ると、<b>1秒間、最高速度が30%アップ</b>します。ライン取りに組み込みましょう。</p>
+
+  <h3>ジャンプ台</h3>
+  <p>オフロードパークにあります。勢いよく乗り上げるとジャンプ。速いほど遠くまで飛び、<b>水たまりを飛び越えられます</b>。空中ではハンドルもアクセルも効かないので、踏み切る前に向きを整えておきましょう。</p>
+</section>
+
+<section id="rules" aria-labelledby="h-rules">
+  <h2 id="h-rules"><span class="no">04</span>レースのルール</h2>
+  <ul>
+    <li><b>参加台数</b>：4台（あなた＋ライバル3台）。周回数は1〜5周から選べます（標準は3周）。</li>
+    <li><b>周回</b>：コースを正しい向きに1周してゴールラインを越えると1周です。ショートカットや逆走では周回になりません。</li>
+    <li><b>順位</b>：周回数とコース上の進み具合で、常に計算されます。</li>
+    <li><b>ゴール</b>：あなたがゴールした時点でレース終了。まだ走っているライバルは、それまでのペースから<b>推定タイム</b>が表示されます。</li>
+    <li><b>コースアウト</b>：水たまりに落ちると、<b>1.5秒後</b>に少し手前のチェックポイントから再スタートします。復帰直後の少しの間は点滅し、ほかの車とぶつかりません。</li>
+    <li><b>逆走</b>：逆向きに3秒以上走ると「逆走中」と表示されます。</li>
+    <li><b>壁と接触</b>：タイヤバリアに当たると弾かれます。車同士もぶつかり合いますが、壊れたりリタイアしたりはしません。</li>
+  </ul>
+
+  <h3>路面</h3>
+  <div class="tbl">
+    <table>
+      <thead><tr><th scope="col">路面</th><th scope="col">最高速度</th><th scope="col">特徴</th></tr></thead>
+      <tbody>
+        <tr><th scope="row"><span class="sw" style="background:#4B5058"></span>舗装路</th><td class="c">100%</td><td>コースの基本。いちばん速い</td></tr>
+        <tr><th scope="row"><span class="sw" style="background:repeating-linear-gradient(90deg,#F1F1EE 0 4px,#D63A2F 4px 8px)"></span>縁石</th><td class="c">95%</td><td>少しガタガタ揺れる。カットしてもロスは小さい</td></tr>
+        <tr><th scope="row"><span class="sw" style="background:#4F9747"></span>芝生・砂</th><td class="c">55%</td><td>大きく減速し、よく滑る。はみ出しに注意</td></tr>
+        <tr><th scope="row"><span class="sw" style="background:#3A84BC"></span>水たまり</th><td class="c">―</td><td>落ちるとコースアウト</td></tr>
+        <tr><th scope="row"><span class="sw" style="background:#1B1E22;border-color:#FFC400"></span>ダッシュ板</th><td class="c">130%</td><td>通過後1秒間加速</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="courses" aria-labelledby="h-courses">
+  <h2 id="h-courses"><span class="no">05</span>コース紹介</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>パークサーキット<span class="tag lv1">初級</span></h3>
+      <p>公園の中の、道幅の広いオーバルコース。ダッシュ板が2か所。まずはここで操作とドリフトに慣れましょう。</p>
+    </div>
+    <div class="card">
+      <h3>ガレージトラック<span class="tag lv2">中級</span></h3>
+      <p>屋内のカーペットコース。道幅が狭く、ヘアピンとS字が連続します。ブレーキとドリフトの使い分けがカギ。</p>
+    </div>
+    <div class="card">
+      <h3>オフロードパーク<span class="tag lv3">上級</span></h3>
+      <p>砂地の区間、コーナー外側の水たまり、そして水たまりを越えるジャンプ台。大回りすると水に落ちるので要注意。</p>
+    </div>
+  </div>
+</section>
+
+<section id="rivals" aria-labelledby="h-rivals">
+  <h2 id="h-rivals"><span class="no">06</span>ライバル紹介</h2>
+  <p>ライバルもあなたと同じ車・同じ操作で走っています。それぞれにクセがあるので、見きわめて抜き去りましょう。</p>
+  <div class="tbl">
+    <table>
+      <thead><tr><th scope="col">ライバル</th><th scope="col">タイプ</th><th scope="col">特徴</th></tr></thead>
+      <tbody>
+        <tr><th scope="row"><span class="dot" style="background:#E8352B"></span>レッド・ブレイズ</th><td class="c">スピード型</td><td>直線が速く、積極的に追い抜いてくる。ただしコーナーで膨らみがち</td></tr>
+        <tr><th scope="row"><span class="dot" style="background:#2F6FEB"></span>ブルー・アロー</th><td class="c">テクニック型</td><td>ライン取りが正確でミスが少ない。ドリフトも使いこなす強敵</td></tr>
+        <tr><th scope="row"><span class="dot" style="background:#2BB24C"></span>グリーン・バンパー</th><td class="c">ブロック型</td><td>スピードは控えめだが、すぐ後ろにあなたが来ると前に入ってブロックしてくる</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="hud" aria-labelledby="h-hud">
+  <h2 id="h-hud"><span class="no">07</span>画面の見かた</h2>
+  <div class="hud" role="img" aria-label="レース画面の配置。左上に順位と周回、右上にタイムとポーズボタン、右下にスピードとミニターボ、左下にミニマップ、中央にカウントダウンなどのお知らせ">
+    <div class="road"></div>
+    <div class="b tl"><strong>順位・周回</strong>2nd / 4　LAP 2/3</div>
+    <div class="b tr"><strong>タイム</strong>合計・今の周・ベストラップ<br>右端に II（ポーズ）</div>
+    <div class="b ct"><strong>お知らせ</strong>3・2・1・GO!／FINAL LAP／FINISH</div>
+    <div class="b bl"><strong>ミニマップ</strong>コースと4台の位置<br>白ふちの点があなた</div>
+    <div class="b br"><strong>スピード・ミニターボ</strong>km/h とチャージメーター</div>
+  </div>
+  <p>あなたの車の上には黄色い <b class="v">▼</b> マークが付いています。画面は進行方向の少し先を映し、スピードが上がると少しズームアウトします。</p>
+</section>
+
+<section id="settings" aria-labelledby="h-settings">
+  <h2 id="h-settings"><span class="no">08</span>設定と記録</h2>
+  <div class="tbl">
+    <table>
+      <thead><tr><th scope="col">項目</th><th scope="col">内容</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">マシンの色</th><td>イエロー・ホワイト・パープル・オレンジの4色（ライバルと重なりません）</td></tr>
+        <tr><th scope="row">難易度</th><td><b>かんたん</b>／<b>ふつう</b>／<b>むずかしい</b>。上がるほどライバルが速くなります。かんたん・ふつうでは、差が半周以上開くとライバルの速さが少し調整され、接戦になりやすくなります。むずかしいでは調整なしの真剣勝負です。</td></tr>
+        <tr><th scope="row">周回数</th><td>1〜5周</td></tr>
+        <tr><th scope="row">音量</th><td>ポーズ画面で BGM と効果音を別々に調整できます</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <h3>記録</h3>
+  <ul>
+    <li>コースごとに<b>ベストタイム</b>（3周レースのみ）と<b>ベストラップ</b>が保存され、タイトル画面にも表示されます。</li>
+    <li>自己ベストを更新すると、リザルト画面に <b style="color:var(--hot)">NEW RECORD</b> が出ます。</li>
+    <li>選んだ設定や記録は、お使いのブラウザに保存されます。別の端末やブラウザとは共有されず、ブラウザのデータを消すとリセットされます。</li>
+  </ul>
+</section>
+
+<section id="faq" aria-labelledby="h-faq">
+  <h2 id="h-faq"><span class="no">09</span>困ったとき</h2>
+  <details><summary>音が出ない</summary><div><p>ブラウザの仕組みにより、最初に画面をクリック・タップするか、キーを押すまで音は鳴りません。ポーズ画面の音量設定や、端末のマナーモードも確認してください。</p></div></details>
+  <details><summary>スマホで遊びにくい</summary><div><p><b>横向き</b>がおすすめです。左手の親指でスティック、右手の親指で GAS と DRIFT を押すと遊びやすくなります。</p></div></details>
+  <details><summary>ゲームパッドが反応しない</summary><div><p>パッドをつないだあと、どれかボタンを押してください。それでも反応しない場合は、ページを読み込み直してください。</p></div></details>
+  <details><summary>別のタブを開いたら止まった</summary><div><p>タブを切り替えたりウィンドウを隠したりすると、自動でポーズします。<kbd>Esc</kbd> か「再開」で続きから遊べます。</p></div></details>
+  <details><summary>動作環境</summary><div><p>パソコンの Chrome・Edge・Firefox・Safari の最新版、およびスマートフォンの最新ブラウザで動作します。</p></div></details>
+</section>
+
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>RC GRAND PRIX — ラジコン・グランプリ</span>
+    <a href="index.html">ゲームをはじめる ▶</a>
+  </div>
+</footer>
+
+</body>
+</html>
