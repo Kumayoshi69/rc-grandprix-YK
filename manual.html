@@ -117,6 +117,24 @@ details{border:1px solid var(--line);border-radius:6px;background:var(--panel);m
 summary{cursor:pointer;padding:12px 16px;font-weight:700;list-style-position:inside}
 summary:focus-visible{outline:2px solid var(--volt);outline-offset:2px;border-radius:6px}
 details > div{padding:0 16px 12px}
+/* Ads (Amazon associate links) — same look as the game's title/result screens */
+.ads{display:grid;gap:8px;margin-top:24px}
+.ads[hidden]{display:none}
+.adhead{margin:0;display:flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:.12em;color:var(--muted);line-height:1.5}
+.pr{border:1px solid var(--muted);border-radius:2px;padding:0 4px;font-family:var(--f-display);font-size:10px;letter-spacing:.06em;line-height:1.5}
+.adlist{display:grid;gap:6px}
+.ad{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:8px;padding:8px 10px;border:1px solid var(--line);border-radius:4px;background:var(--panel2);color:var(--text);text-decoration:none;min-width:0}
+.ad:hover{border-color:var(--muted)}
+.ad .thumb{grid-column:1;width:56px;height:56px;object-fit:contain;background:#fff;border-radius:3px}
+.ad .tag{grid-column:1;margin:0;vertical-align:baseline;font-size:10px;font-weight:900;color:var(--volt-ink);background:var(--volt);border-radius:2px;padding:1px 5px;white-space:nowrap;letter-spacing:0}
+.ad .tx .tag{display:inline-block;margin-bottom:3px}
+.ad .tx{grid-column:2;min-width:0}
+.ad .tx.wide{grid-column:1 / span 2}
+.ad .t{display:block;font-size:13px;font-weight:700;line-height:1.35;overflow-wrap:anywhere}
+.ad .s{display:block;font-size:11px;color:var(--muted);line-height:1.4}
+.ad .arr{grid-column:3;color:var(--muted);display:flex}
+.adnote{margin:0;font-size:10px;line-height:1.5;color:var(--muted)}
+
 footer{border-top:1px solid var(--line);color:var(--muted);font-size:13px}
 footer .wrap{padding-top:20px;padding-bottom:max(28px,env(safe-area-inset-bottom,0px));display:flex;gap:12px;justify-content:space-between;flex-wrap:wrap;align-items:center}
 </style>
@@ -141,6 +159,9 @@ footer .wrap{padding-top:20px;padding-bottom:max(28px,env(safe-area-inset-bottom
 
 <main>
 <div class="wrap">
+
+<!-- 広告（Amazon アソシエイト）。中身は ads.js で管理 -->
+<aside id="ads" class="ads" aria-label="広告" hidden></aside>
 
 <section id="flow" aria-labelledby="h-flow">
   <h2 id="h-flow"><span class="no">01</span>遊び方</h2>
@@ -318,5 +339,7 @@ footer .wrap{padding-top:20px;padding-bottom:max(28px,env(safe-area-inset-bottom
   </div>
 </footer>
 
+<script src="ads.js"></script>
+<script>if(typeof renderAds==='function') renderAds([document.getElementById('ads')]);</script>
 </body>
 </html>
